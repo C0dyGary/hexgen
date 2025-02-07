@@ -1,0 +1,7 @@
+package domain
+
+type {{.Name}} struct {
+{{- range .Fields}}
+    {{.Name}} {{.Type}} `json:"{{.JSON}}"`
+{{- end}}
+}

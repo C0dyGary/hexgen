@@ -1,0 +1,20 @@
+package port
+
+import "github.com/C0dyGary/{{.Project}}/src/pkg/domain"
+
+type Service{{.Name}} interface {
+    Create{{.Name}}(domain.{{.Name}}) (*domain.{{.Name}},error)
+    Read{{.Name}}(id uint) (*domain.{{.Name}},error)
+    List{{.Name}}() (*[]domain.{{.Name}},error)
+    Update{{.Name}}(id uint, newData map[string]interface{}) (*domain.{{.Name}},error)
+    Delete{{.Name}}(id uint) error
+
+}
+
+type Repository{{.Name}} interface {
+    Insert{{.Name}}(domain.{{.Name}}) (*domain.{{.Name}},error)
+    Select{{.Name}}(id uint) (*domain.{{.Name}},error)
+    SelectAll{{.Name}}() (*[]domain.{{.Name}},error)
+    Update{{.Name}}(id uint, newData map[string]interface{}) (*domain.{{.Name}},error)
+    Delete{{.Name}}(id uint) error
+}
