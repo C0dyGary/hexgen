@@ -1,0 +1,7 @@
+package {{.Name}}
+
+func(h *handler) {{.Function}}{{.Name}}(c *fiber.Ctx) error {
+    return c.JSON(fiber.Map{
+        "message": "Hello, World!",
+    })
+}

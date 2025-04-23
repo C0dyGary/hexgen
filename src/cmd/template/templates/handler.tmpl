@@ -1,7 +1,7 @@
-package {{.Name}}
+package {{.NameLower}}
 
-func(h *handler) {{.Function}}{{.Name}}(c *fiber.Ctx) error {
-    return c.JSON(fiber.Map{
-        "message": "Hello, World!",
-    })
+import "github.com/C0dyGary/{{.Project}}/src/pkg/port"
+
+type Handler struct {
+    Service port.Service{{.Name}}
 }
