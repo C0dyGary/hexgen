@@ -7,7 +7,7 @@ import (
 )
 
 func GenMkdir(c *cli.Context) error {
-	directories := []string{"src/pkg/domain", "src/pkg/ports", "src/pkg/repository", "src/pkg/service", "src/cmd/api/handler", "src/cmd/api/routes"}
+	directories := []string{"src/pkg/domain", "src/pkg/port", "src/pkg/repository", "src/pkg/service", "src/cmd/api/handler", "src/cmd/api/routes"}
 	for _, dir := range directories {
 		if err := os.MkdirAll(dir, os.ModePerm); err != nil {
 			return err
