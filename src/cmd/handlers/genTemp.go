@@ -14,7 +14,7 @@ func GenTemplate(c *cli.Context) error {
 	entityName := c.String("name")
 	//project := c.String("project")
 	/*
-		file, err := os.Create(fmt.Sprintf("src/pkg/ports/%s.go", strings.ToLower(entityName)))
+		file, err := os.Create(fmt.Sprintf("src/pkg/port/%s.go", strings.ToLower(entityName)))
 		if err != nil {
 			fmt.Println("Error al crear el archivo")
 			return err

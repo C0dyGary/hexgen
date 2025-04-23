@@ -39,7 +39,7 @@ func StartCli() {
 	}
 
 	if err := app.Run(os.Args); err != nil {
-		fmt.Print(fmt.Sprintf("Error: %v", err))
+		fmt.Printf("Error: %v", err)
 		os.Exit(1)
 	}
 }
