@@ -1,0 +1,27 @@
+package routes
+
+import (
+    {{.NameLower}}3 "github.com/{{.RepoName}}/{{.ProjectName}}/src/cmd/api/handler/{{.NameLower}}"
+    "github.com/{{.RepoName}}/{{.ProjectName}}/src/pkg/repository/gorm/{{.NameLower}}"
+    {{.NameLower}}2 "github.com/{{.RepoName}}/{{.ProjectName}}/src/pkg/service/{{.NameLower}}"
+)
+
+func ( r *Routes) Routes{{.Name}}(){
+    repository{{.Name}} := {{.NameLower}}.Repository{
+        DB: r.DB,
+    }
+    service{{.Name}} := {{.NameLower}}2.Service{
+        Repository: &repository{{.Name}},
+    }
+    handler{{.Name}} := {{.NameLower}}3.Handler{
+        Service: &service{{.Name}},
+    }
+
+    routes{{.Name}} := r.Api.Group("/{{.NameLower}}")
+
+    routes{{.Name}}.Get("/get", handler{{.Name}}.Get{{.Name}})
+    routes{{.Name}}.Get("/get/:id", handler{{.Name}}.GetById{{.Name}})
+    routes{{.Name}}.Post("/create", handler{{.Name}}.Post{{.Name}})
+    routes{{.Name}}.Put("/update/:id", handler{{.Name}}.Put{{.Name}})
+    routes{{.Name}}.Delete("/delete/:id", handler{{.Name}}.Delete{{.Name}})
+}
