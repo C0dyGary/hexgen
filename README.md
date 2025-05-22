@@ -1,13 +1,9 @@
-Parece que deseas un `README` que abarque todos los archivos y su propósito en el proyecto. Aquí tienes un ejemplo actualizado que incluye una descripción general de los archivos mencionados:
+# Proyecto Hexgen
 
-```markdown
-# Proyecto Go: API REST con Fiber
-
-Este proyecto es una API REST desarrollada en Go utilizando el framework Fiber. La arquitectura sigue un enfoque modular y limpio, con capas bien definidas para manejar rutas, controladores, servicios y repositorios.
+Este proyecto es una herramienta de generación de código en Go, diseñada para facilitar la creación de entidades, controladores, servicios y otros componentes siguiendo una arquitectura limpia y modular.
 
 ## Tabla de Contenidos
 
-- [Requisitos](#requisitos)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Descripción de Archivos](#descripción-de-archivos)
 - [Instalación](#instalación)
@@ -15,49 +11,79 @@ Este proyecto es una API REST desarrollada en Go utilizando el framework Fiber. 
 - [Contribuciones](#contribuciones)
 - [Licencia](#licencia)
 
-## Requisitos
-
-- Go 1.20 o superior
-- Base de datos compatible con GORM (MySQL, PostgreSQL, SQLite, etc.)
-- [Go Modules](https://blog.golang.org/using-go-modules) habilitado
-
 ## Estructura del Proyecto
 
 ```plaintext
-src/
-├── cmd/
-│   ├── api/
-│   │   ├── handler/         # Controladores para manejar las solicitudes HTTP
-│   │   └── routes/          # Definición de rutas
-│   ├── template/            # Plantillas para generación de código
-├── pkg/
-│   ├── repository/          # Repositorios para interactuar con la base de datos
-│   ├── service/             # Lógica de negocio
-├── go.mod                   # Archivo de dependencias
+hexgen/
+├── go.mod
+├── go.sum
+├── main.go
+├── README.md
+├── prueba/
+├── src/
+│   ├── cmd/
+│   │   ├── cli.go
+│   │   ├── handlers/
+│   │   │   ├── genEntity.go
+│   │   │   ├── genMkdir.go
+│   │   │   └── genTemp.go
+│   │   ├── template/
+│   │       ├── load.go
+│   │       ├── tmpl.go
+│   │       └── templates/
+│   │           ├── entity.tmpl
+│   │           ├── handler.tmpl
+│   │           ├── handlerMeth.tmpl
+│   │           ├── port.tmpl
+│   │           ├── repository.tmpl
+│   │           ├── routes.tmpl
+│   │           └── service.tmpl
+│   ├── pkg/
+│       ├── domain/
+│           ├── Entity.go
+│           ├── field.go
+│           ├── handler.go
+│           └── method.go
 ```
 
 ## Descripción de Archivos
 
-### `src/cmd/template/load.go`
-Este archivo carga plantillas desde el sistema de archivos embebido utilizando `embed`. Permite generar código dinámico basado en plantillas `.tmpl`.
+### Archivos Principales
 
-### `src/cmd/template/templates/routes.tmpl`
-Plantilla para definir rutas de una entidad. Genera código que configura rutas HTTP para operaciones CRUD.
+- **`main.go`**: Punto de entrada principal del programa.
+- **`go.mod` y `go.sum`**: Archivos de configuración y dependencias del proyecto Go.
 
-### `src/cmd/template/templates/handler.tmpl`
-Plantilla para generar controladores (`Handler`) de una entidad. Define la estructura del controlador y su dependencia en el servicio correspondiente.
+### Directorio `src/cmd`
 
-### `src/cmd/api/handler/`
-Contiene los controladores generados para manejar las solicitudes HTTP. Cada controlador está asociado a una entidad específica.
+- **`cli.go`**: Define la interfaz de línea de comandos para interactuar con la herramienta.
 
-### `src/pkg/repository/`
-Define los repositorios que interactúan directamente con la base de datos. Implementa las operaciones CRUD.
+#### Subdirectorio `handlers`
 
-### `src/pkg/service/`
-Contiene la lógica de negocio. Los servicios actúan como intermediarios entre los controladores y los repositorios.
+- **`genEntity.go`**: Genera entidades basadas en las especificaciones proporcionadas.
+- **`genMkdir.go`**: Crea directorios necesarios para la estructura del proyecto.
+- **`genTemp.go`**: Maneja la generación de archivos a partir de plantillas.
 
-### `go.mod`
-Archivo de configuración de dependencias del proyecto. Define los módulos y versiones requeridas.
+#### Subdirectorio `template`
+
+- **`load.go`**: Carga y gestiona las plantillas desde el sistema de archivos.
+- **`tmpl.go`**: Proporciona funciones para procesar y renderizar plantillas.
+
+##### Subdirectorio `templates`
+
+- **`entity.tmpl`**: Plantilla para generar entidades.
+- **`handler.tmpl`**: Plantilla para generar controladores.
+- **`handlerMeth.tmpl`**: Plantilla para métodos de controladores.
+- **`port.tmpl`**: Plantilla para definir puertos.
+- **`repository.tmpl`**: Plantilla para repositorios.
+- **`routes.tmpl`**: Plantilla para rutas.
+- **`service.tmpl`**: Plantilla para servicios.
+
+### Directorio `src/pkg/domain`
+
+- **`Entity.go`**: Define la estructura base de una entidad.
+- **`field.go`**: Maneja los campos de las entidades.
+- **`handler.go`**: Define los controladores base.
+- **`method.go`**: Proporciona métodos para las entidades y controladores.
 
 ## Instalación
 
@@ -74,9 +100,7 @@ Archivo de configuración de dependencias del proyecto. Define los módulos y ve
    go mod tidy
    ```
 
-3. Configura la base de datos en el archivo correspondiente.
-
-4. Ejecuta la aplicación:
+3. Ejecuta la aplicación:
 
    ```bash
    go run main.go
@@ -84,7 +108,11 @@ Archivo de configuración de dependencias del proyecto. Define los módulos y ve
 
 ## Uso
 
-La API expone endpoints para realizar operaciones CRUD sobre las entidades definidas. Las rutas se generan dinámicamente a partir de las plantillas.
+Utiliza la herramienta para generar componentes de tu proyecto ejecutando comandos desde la línea de comandos. Por ejemplo:
+
+```bash
+go run main.go generate entity --name=User
+```
 
 ## Contribuciones
 
@@ -93,4 +121,3 @@ La API expone endpoints para realizar operaciones CRUD sobre las entidades defin
 ## Licencia
 
 Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
-```
