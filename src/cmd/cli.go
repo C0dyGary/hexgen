@@ -32,8 +32,19 @@ func StartCli() {
 				Usage: "Genera el puerto, service, repository de la entidad ya creada",
 				Flags: []cli.Flag{
 					&cli.StringFlag{Name: "name", Aliases: []string{"n"}, Required: true, Usage: "Nombre de la estructura en formato PascalCase Ej:'User','Role'"},
-					&cli.StringFlag{Name: "project", Aliases: []string{"p"}, Required: true, Usage: "Nombre del proyecto"}},
+					&cli.StringFlag{Name: "project", Aliases: []string{"p"}, Required: true, Usage: "Nombre del proyecto"},
+				},
 				Action: handlers.GenTemplate,
+			},
+			{
+				Name:  "db",
+				Usage: "Genera la estructura de la base de datos",
+				Flags: []cli.Flag{
+					&cli.StringFlag{Name: "name", Aliases: []string{"n"}, Required: true, Usage: "Nombre de la estructura en formato PascalCase Ej:'User','Role'"},
+					&cli.StringFlag{Name: "project", Aliases: []string{"p"}, Required: true, Usage: "Nombre del proyecto"},
+					&cli.StringFlag{Name: "database", Aliases: []string{"d"}, Required: true, Usage: "Base de datos a utilizar Ej: 'mysql', 'postgres', 'sqlite'"},
+				},
+				Action: handlers.GenDb,
 			},
 		},
 	}

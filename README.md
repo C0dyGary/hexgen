@@ -113,6 +113,7 @@ El binario `hexgen` es una herramienta de línea de comandos (CLI) diseñada par
 ### Ejecución del Binario
 
 El binario se ejecuta utilizando el siguiente formato básico:
+
 ```bash
 ./hexgen <comando> [opciones]
 ```
@@ -128,16 +129,20 @@ El binario se ejecuta utilizando el siguiente formato básico:
 ### Opciones de los Comandos
 
 Cada comando puede aceptar opciones específicas. Por ejemplo:
+
 ```bash
 ./hexgen generate entity --name=User --fields="id:int,name:string,email:string"
 ```
+
 En este caso:
+
 - `--name`: Especifica el nombre de la entidad.
 - `--fields`: Define los campos de la entidad, con su nombre y tipo.
 
 ### Estructura Generada
 
 Al ejecutar un comando, el binario genera los archivos correspondientes en las ubicaciones adecuadas dentro del proyecto. Por ejemplo:
+
 - Una entidad se genera en `src/pkg/domain/`.
 - Un controlador se genera en `src/cmd/handlers/`.
 - Las rutas se configuran en `src/cmd/template/templates/routes.tmpl`.
@@ -149,11 +154,13 @@ El binario utiliza plantillas ubicadas en `src/cmd/template/templates/` para gen
 ### Ejemplo de Uso
 
 1. Generar una nueva entidad llamada `Product` con campos específicos:
+
    ```bash
    ./hexgen generate entity --name=Product --fields="id:int,name:string,price:float"
    ```
 
 2. Crear un controlador para la entidad `Product`:
+
    ```bash
    ./hexgen generate handler --name=Product
    ```

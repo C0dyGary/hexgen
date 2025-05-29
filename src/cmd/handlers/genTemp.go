@@ -73,6 +73,7 @@ func GenTemplate(c *cli.Context) error {
 		}
 	}
 	fmt.Printf("Repository functions %s created successfully.\n", entityName)
+
 	// ================= Create Handler =========================
 	if err = os.MkdirAll(fmt.Sprintf("src/cmd/api/handler/%s", strings.ToLower(entityName)), os.ModePerm); err != nil {
 		fmt.Println("Error al crear el directorio")
